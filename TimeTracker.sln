@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeTracker", "TimeTracker\TimeTracker.csproj", "{9EAFC419-48A3-42E6-8AA3-014A1CD12159}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeTracker.Entities", "TimeTracker.Entities\TimeTracker.Entities.csproj", "{A61E0280-AD82-4A86-8936-D2E8EC2F0BD5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeTracker.Database", "TimeTracker.Database\TimeTracker.Database.csproj", "{0B11D00F-EF87-4994-904D-DEEDB4BFCB8C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeTracker.Testing", "TimeTracker.Testing\TimeTracker.Testing.csproj", "{59BE6CFC-EC9E-43A5-B94E-16B16A942103}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9EAFC419-48A3-42E6-8AA3-014A1CD12159}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EAFC419-48A3-42E6-8AA3-014A1CD12159}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EAFC419-48A3-42E6-8AA3-014A1CD12159}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EAFC419-48A3-42E6-8AA3-014A1CD12159}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A61E0280-AD82-4A86-8936-D2E8EC2F0BD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A61E0280-AD82-4A86-8936-D2E8EC2F0BD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A61E0280-AD82-4A86-8936-D2E8EC2F0BD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A61E0280-AD82-4A86-8936-D2E8EC2F0BD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B11D00F-EF87-4994-904D-DEEDB4BFCB8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B11D00F-EF87-4994-904D-DEEDB4BFCB8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B11D00F-EF87-4994-904D-DEEDB4BFCB8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B11D00F-EF87-4994-904D-DEEDB4BFCB8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59BE6CFC-EC9E-43A5-B94E-16B16A942103}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59BE6CFC-EC9E-43A5-B94E-16B16A942103}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59BE6CFC-EC9E-43A5-B94E-16B16A942103}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59BE6CFC-EC9E-43A5-B94E-16B16A942103}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
