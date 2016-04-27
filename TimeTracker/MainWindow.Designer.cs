@@ -32,9 +32,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.notify = new System.Windows.Forms.NotifyIcon(this.components);
             this.menu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.mniClockInOut = new System.Windows.Forms.ToolStripMenuItem();
-            this.mniNewClockNote = new System.Windows.Forms.ToolStripMenuItem();
+            this.mniToggle = new System.Windows.Forms.ToolStripMenuItem();
+            this.mniNewTimeNote = new System.Windows.Forms.ToolStripMenuItem();
             this.mniEditNote = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,38 +48,47 @@
             // menu
             // 
             this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mniClockInOut,
-            this.mniNewClockNote,
-            this.mniEditNote});
+            this.mniToggle,
+            this.mniNewTimeNote,
+            this.mniEditNote,
+            this.exitToolStripMenuItem});
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(161, 70);
+            this.menu.Size = new System.Drawing.Size(158, 114);
             this.menu.Opening += new System.ComponentModel.CancelEventHandler(this.MenuOpeningHandler);
             // 
-            // mniClockInOut
+            // mniToggle
             // 
-            this.mniClockInOut.Name = "mniClockInOut";
-            this.mniClockInOut.Size = new System.Drawing.Size(160, 22);
-            this.mniClockInOut.Text = "Clock In";
-            this.mniClockInOut.Click += new System.EventHandler(this.ClockInOutHandler);
+            this.mniToggle.Name = "mniToggle";
+            this.mniToggle.Size = new System.Drawing.Size(157, 22);
+            this.mniToggle.Text = "Start/Stop Time";
+            this.mniToggle.Click += new System.EventHandler(this.ToggleStartStopHandler);
             // 
-            // mniNewClockNote
+            // mniNewTimeNote
             // 
-            this.mniNewClockNote.Name = "mniNewClockNote";
-            this.mniNewClockNote.Size = new System.Drawing.Size(160, 22);
-            this.mniNewClockNote.Text = "New Clock Note";
+            this.mniNewTimeNote.Name = "mniNewTimeNote";
+            this.mniNewTimeNote.Size = new System.Drawing.Size(157, 22);
+            this.mniNewTimeNote.Text = "New Time Note";
+            this.mniNewTimeNote.Click += new System.EventHandler(this.NewTimeNoteHandler);
             // 
             // mniEditNote
             // 
             this.mniEditNote.Name = "mniEditNote";
-            this.mniEditNote.Size = new System.Drawing.Size(160, 22);
+            this.mniEditNote.Size = new System.Drawing.Size(157, 22);
             this.mniEditNote.Text = "Edit Note";
             this.mniEditNote.Click += new System.EventHandler(this.EditNoteHandler);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitHandler);
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(229, 198);
+            this.ClientSize = new System.Drawing.Size(209, 130);
             this.Name = "MainWindow";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
@@ -92,9 +102,10 @@
 
         private System.Windows.Forms.NotifyIcon notify;
         private System.Windows.Forms.ContextMenuStrip menu;
-        private System.Windows.Forms.ToolStripMenuItem mniClockInOut;
-        private System.Windows.Forms.ToolStripMenuItem mniNewClockNote;
+        private System.Windows.Forms.ToolStripMenuItem mniToggle;
+        private System.Windows.Forms.ToolStripMenuItem mniNewTimeNote;
         private System.Windows.Forms.ToolStripMenuItem mniEditNote;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
     }
 }
 

@@ -1,0 +1,12 @@
+c:\users\chris\documents\visual studio 2015\Projects\TimeTracker\TimeTracker.Database\bin\Debug\TimeTracker.Database.dll.config
+c:\users\chris\documents\visual studio 2015\Projects\TimeTracker\TimeTracker.Database\bin\Debug\TimeTracker.Database.dll
+c:\users\chris\documents\visual studio 2015\Projects\TimeTracker\TimeTracker.Database\bin\Debug\TimeTracker.Database.pdb
+c:\users\chris\documents\visual studio 2015\Projects\TimeTracker\TimeTracker.Database\bin\Debug\EntityFramework.dll
+c:\users\chris\documents\visual studio 2015\Projects\TimeTracker\TimeTracker.Database\bin\Debug\EntityFramework.SqlServer.dll
+c:\users\chris\documents\visual studio 2015\Projects\TimeTracker\TimeTracker.Database\bin\Debug\EntityFramework.xml
+c:\users\chris\documents\visual studio 2015\Projects\TimeTracker\TimeTracker.Database\bin\Debug\EntityFramework.SqlServer.xml
+c:\users\chris\documents\visual studio 2015\Projects\TimeTracker\TimeTracker.Database\obj\Debug\TimeTracker.Database.csprojResolveAssemblyReference.cache
+c:\users\chris\documents\visual studio 2015\Projects\TimeTracker\TimeTracker.Database\obj\Debug\TimeTracker.Database.dll
+c:\users\chris\documents\visual studio 2015\Projects\TimeTracker\TimeTracker.Database\obj\Debug\TimeTracker.Database.pdb
+c:\Users\chris\Documents\Visual Studio 2015\Projects\TimeTracker\TimeTracker.Database\bin\Debug\TimeTracker.Entities.dll
+c:\Users\chris\Documents\Visual Studio 2015\Projects\TimeTracker\TimeTracker.Database\bin\Debug\TimeTracker.Entities.pdb

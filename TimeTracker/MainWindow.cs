@@ -19,18 +19,27 @@ namespace TimeTracker
         public MainWindow()
         {
             InitializeComponent();
+            Visible = false;
+            Open();
+        }
+        async void Open()
+        {
+            notify.ContextMenuStrip = null;
+            notify.ShowBalloonTip(0, "Starting", "Time Tracker is opening the database", ToolTipIcon.Info);
             DatabaseContext.ConfigureMigrations();
             using (var db = new DatabaseContext())
             {
                 var username = Environment.UserName;
-                m_user = db.Users.FirstOrDefault(fn => fn.UserName == username);
+                m_user = await db.Users.FirstOrDefaultAsync(fn => fn.UserName == username);
                 if (m_user == null)
                 {
                     m_user = new User { UserName = username };
                     db.Users.Add(m_user);
-                    db.SaveChanges();
+                    await db.SaveChangesAsync();
                 }
             }
+            notify.ContextMenuStrip = menu;
+            notify.ShowBalloonTip(0, "Started", "Time Tracker Is open", ToolTipIcon.Info);
         }
         protected override void OnShown(EventArgs e)
         {
@@ -42,28 +51,28 @@ namespace TimeTracker
         {
             using (var db = new DatabaseContext())
             {
-                var last = db.TimedEvents.FirstOrDefault(fn => fn.End == null && fn.User.UserId == m_user.UserId);
+                var last = m_user.GetTimes(db).FirstOrDefault(fn => fn.End == null);
                 if (last == null)
                 {
-                    mniClockInOut.Text = "Clock In";
+                    mniToggle.Text = "Start Timing";
                     mniEditNote.Enabled = false;
                 }
                 else
                 {
-                    mniClockInOut.Text = "Clock Out";
+                    mniToggle.Text = "Stop Timing";
                     mniEditNote.Enabled = true;
                 }
             }
         }
 
-        void ClockInOutHandler(object sender, EventArgs e)
+        void ToggleStartStopHandler(object sender, EventArgs e)
         {
             using (var db = new DatabaseContext())
             {
-                var last = db.TimedEvents.FirstOrDefault(fn => fn.End == null && fn.User.UserId == m_user.UserId);
+                var last = m_user.GetTimes(db).FirstOrDefault(fn => fn.End == null);
                 if (last == null)
                 {
-                    last = new TimedEvent { Start = DateTime.Now, User = m_user };
+                    last = new TimedEvent { Start = DateTime.Now, UserId = m_user.UserId };
                     db.TimedEvents.Add(last);
                 }
                 else
@@ -76,7 +85,39 @@ namespace TimeTracker
 
         void EditNoteHandler(object sender, EventArgs e)
         {
+            using (var db = new DatabaseContext())
+            {
+                var last = m_user.GetTimes(db).OrderByDescending(fn => fn.Start).FirstOrDefault();
+                if (last == null)
+                    return;
+                using (var form = new NoteWindow(last.Note))
+                {
+                    if (form.ShowDialog(this) != DialogResult.OK)
+                        return;
+                    last.Note = form.Note;
+                    db.SaveChanges();
+                }
+            }
+        }
 
+        void ExitHandler(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void NewTimeNoteHandler(object sender, EventArgs e)
+        {
+            using (var form = new NoteWindow(""))
+                if (form.ShowDialog(this) == DialogResult.OK)
+                    using (var db = new DatabaseContext())
+                    {
+                        var now = DateTime.Now;
+                        var last = m_user.GetTimes(db).OrderByDescending(fn => fn.Start).FirstOrDefault();
+                        if (last.End == null)
+                            last.End = now;
+                        db.TimedEvents.Add(new TimedEvent { Start = now, UserId = m_user.UserId, Note = form.Note });
+                        db.SaveChanges();
+                    }
         }
     }
 }

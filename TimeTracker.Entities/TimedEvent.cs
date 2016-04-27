@@ -13,6 +13,7 @@ namespace TimeTracker.Entities
         public DateTime? End { get; set; }
         public string Note { get; set; }
         public User User { get; set; }
+        public int UserId { get; set; }
 
         public TimeSpan Duration()
         {
