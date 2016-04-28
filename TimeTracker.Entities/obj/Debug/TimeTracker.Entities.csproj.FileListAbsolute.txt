@@ -1,5 +1,0 @@
-c:\users\chris\documents\visual studio 2015\Projects\TimeTracker\TimeTracker.Entities\bin\Debug\TimeTracker.Entities.dll
-c:\users\chris\documents\visual studio 2015\Projects\TimeTracker\TimeTracker.Entities\bin\Debug\TimeTracker.Entities.pdb
-c:\users\chris\documents\visual studio 2015\Projects\TimeTracker\TimeTracker.Entities\obj\Debug\TimeTracker.Entities.csprojResolveAssemblyReference.cache
-c:\users\chris\documents\visual studio 2015\Projects\TimeTracker\TimeTracker.Entities\obj\Debug\TimeTracker.Entities.dll
-c:\users\chris\documents\visual studio 2015\Projects\TimeTracker\TimeTracker.Entities\obj\Debug\TimeTracker.Entities.pdb

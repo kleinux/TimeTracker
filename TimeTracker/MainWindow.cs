@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TimeTracker.Database;
 using TimeTracker.Entities;
+using TimeTracker.Properties;
 
 namespace TimeTracker
 {
@@ -25,7 +26,8 @@ namespace TimeTracker
         async void Open()
         {
             notify.ContextMenuStrip = null;
-            notify.ShowBalloonTip(0, "Starting", "Time Tracker is opening the database", ToolTipIcon.Info);
+            notify.Icon = Resources.IconPurple;
+            notify.Text = "Starting Time Tracker...";
             DatabaseContext.ConfigureMigrations();
             using (var db = new DatabaseContext())
             {
@@ -37,42 +39,48 @@ namespace TimeTracker
                     db.Users.Add(m_user);
                     await db.SaveChangesAsync();
                 }
+                UpdateIconState(db);
             }
             notify.ContextMenuStrip = menu;
-            notify.ShowBalloonTip(0, "Started", "Time Tracker Is open", ToolTipIcon.Info);
+            notify.Text = "";
         }
+
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
             Hide();
         }
 
+        void UpdateIconState(DatabaseContext db)
+        {
+            var timing = m_user.GetTimes(db).FirstOrDefault(fn => fn.End == null);
+            if (timing == null)
+            {
+                mniToggle.Text = "Start Timing";
+                mniEditNote.Enabled = false;
+                notify.Icon = Resources.IconBlue;
+            }
+            else
+            {
+                mniToggle.Text = "Stop Timing";
+                mniEditNote.Enabled = true;
+                notify.Icon = Resources.IconGreen;
+            }
+        }
+
         void MenuOpeningHandler(object sender, CancelEventArgs e)
         {
-            using (var db = new DatabaseContext())
-            {
-                var last = m_user.GetTimes(db).FirstOrDefault(fn => fn.End == null);
-                if (last == null)
-                {
-                    mniToggle.Text = "Start Timing";
-                    mniEditNote.Enabled = false;
-                }
-                else
-                {
-                    mniToggle.Text = "Stop Timing";
-                    mniEditNote.Enabled = true;
-                }
-            }
         }
 
         void ToggleStartStopHandler(object sender, EventArgs e)
         {
             using (var db = new DatabaseContext())
             {
+                db.Users.Attach(m_user);
                 var last = m_user.GetTimes(db).FirstOrDefault(fn => fn.End == null);
                 if (last == null)
                 {
-                    last = new TimedEvent { Start = DateTime.Now, UserId = m_user.UserId };
+                    last = new TimedEvent { Start = DateTime.Now, User = m_user };
                     db.TimedEvents.Add(last);
                 }
                 else
@@ -80,6 +88,7 @@ namespace TimeTracker
                     last.End = DateTime.Now;
                 }
                 db.SaveChanges();
+                UpdateIconState(db);
             }
         }
 

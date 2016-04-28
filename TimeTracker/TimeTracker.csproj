@@ -73,6 +73,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TimesWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TimesWindow.Designer.cs">
+      <DependentUpon>TimesWindow.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -89,6 +95,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="TimesWindow.resx">
+      <DependentUpon>TimesWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -112,6 +121,21 @@
       <Project>{A61E0280-AD82-4A86-8936-D2E8EC2F0BD5}</Project>
       <Name>TimeTracker.Entities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\__TemplateIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IconBlue.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IconRed.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IconGreen.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IconPurple.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
