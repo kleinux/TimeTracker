@@ -45,7 +45,7 @@ namespace TimeTracker
             var end = dtEnd.Value.AddDays(1d);
             m_list = new ObservableCollection<TimedEvent>(m_user.GetTimes(m_db).Where(fn => fn.Start >= start && fn.Start < end));
             m_list.CollectionChanged += ListChangedHandler;
-            grid.DataSource = m_list.ToBindingList();
+            bs_times.DataSource = m_list.ToBindingList();
 
         }
 
@@ -54,8 +54,6 @@ namespace TimeTracker
             switch (e.Action)
             {
                 case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
-                    foreach (var time in e.NewItems.Cast<TimedEvent>())
-                        time.Start = DateTime.Now;
                     break;
                 case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
                     m_db.TimedEvents.RemoveRange(e.OldItems.Cast<TimedEvent>());
@@ -109,6 +107,11 @@ namespace TimeTracker
         void bs_times_CurrentItemChanged(object sender, EventArgs e)
         {
             lblHours.Text = $"Time: {TimedEvent.Duration(Times())}";
+        }
+
+        void NewTimeHandler(object sender, EventArgs e)
+        {
+            m_list.Add(m_db.TimedEvents.Add(new TimedEvent { Start = DateTime.Now, User = m_user }));
         }
     }
 }

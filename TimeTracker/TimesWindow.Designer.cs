@@ -45,6 +45,7 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblHours = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bs_times)).BeginInit();
             this.SuspendLayout();
@@ -95,6 +96,7 @@
             // 
             // grid
             // 
+            this.grid.AllowUserToAddRows = false;
             this.grid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -170,11 +172,21 @@
             // lblHours
             // 
             this.lblHours.AutoSize = true;
-            this.lblHours.Location = new System.Drawing.Point(20, 262);
+            this.lblHours.Location = new System.Drawing.Point(93, 262);
             this.lblHours.Name = "lblHours";
             this.lblHours.Size = new System.Drawing.Size(33, 13);
             this.lblHours.TabIndex = 8;
             this.lblHours.Text = "Time:";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(12, 257);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "New Time";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.NewTimeHandler);
             // 
             // TimesWindow
             // 
@@ -182,6 +194,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(607, 292);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.lblHours);
             this.Controls.Add(this.grid);
             this.Controls.Add(this.btnClose);
@@ -216,5 +229,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colNote;
         private System.Windows.Forms.BindingSource bs_times;
         private System.Windows.Forms.Label lblHours;
+        private System.Windows.Forms.Button button1;
     }
 }
