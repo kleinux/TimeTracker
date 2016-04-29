@@ -36,6 +36,8 @@
             this.mniNewTimeNote = new System.Windows.Forms.ToolStripMenuItem();
             this.mniEditNote = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.editTimesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,9 +53,11 @@
             this.mniToggle,
             this.mniNewTimeNote,
             this.mniEditNote,
+            this.editTimesToolStripMenuItem,
+            this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(158, 114);
+            this.menu.Size = new System.Drawing.Size(158, 142);
             this.menu.Opening += new System.ComponentModel.CancelEventHandler(this.MenuOpeningHandler);
             // 
             // mniToggle
@@ -84,6 +88,18 @@
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitHandler);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(154, 6);
+            // 
+            // editTimesToolStripMenuItem
+            // 
+            this.editTimesToolStripMenuItem.Name = "editTimesToolStripMenuItem";
+            this.editTimesToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.editTimesToolStripMenuItem.Text = "Edit Times";
+            this.editTimesToolStripMenuItem.Click += new System.EventHandler(this.EditTimesHandler);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -106,6 +122,8 @@
         private System.Windows.Forms.ToolStripMenuItem mniNewTimeNote;
         private System.Windows.Forms.ToolStripMenuItem mniEditNote;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editTimesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }
 

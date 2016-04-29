@@ -28,20 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TimesWindow));
             this.dtStart = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.dtEnd = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.btnFind = new System.Windows.Forms.Button();
             this.grid = new System.Windows.Forms.DataGridView();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.colStart = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEnd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colNote = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bs_times = new System.Windows.Forms.BindingSource(this.components);
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.lblHours = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bs_times)).BeginInit();
             this.SuspendLayout();
             // 
             // dtStart
@@ -86,12 +91,14 @@
             this.btnFind.TabIndex = 4;
             this.btnFind.Text = "Find";
             this.btnFind.UseVisualStyleBackColor = true;
+            this.btnFind.Click += new System.EventHandler(this.FindTimesHandler);
             // 
             // grid
             // 
             this.grid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.grid.AutoGenerateColumns = false;
             this.grid.BackgroundColor = System.Drawing.SystemColors.Window;
             this.grid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -99,30 +106,12 @@
             this.colStart,
             this.colEnd,
             this.colNote});
+            this.grid.DataSource = this.bs_times;
             this.grid.Location = new System.Drawing.Point(12, 38);
             this.grid.Name = "grid";
-            this.grid.Size = new System.Drawing.Size(546, 193);
+            this.grid.Size = new System.Drawing.Size(583, 213);
             this.grid.TabIndex = 5;
-            // 
-            // button2
-            // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(380, 249);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "Save";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(461, 249);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "Close";
-            this.button3.UseVisualStyleBackColor = true;
+            this.grid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridDoubleClickHandler);
             // 
             // colStart
             // 
@@ -148,24 +137,65 @@
             this.colNote.DataPropertyName = "Note";
             this.colNote.HeaderText = "Note";
             this.colNote.Name = "colNote";
+            this.colNote.ReadOnly = true;
             this.colNote.Width = 175;
+            // 
+            // bs_times
+            // 
+            this.bs_times.CurrentItemChanged += new System.EventHandler(this.bs_times_CurrentItemChanged);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.Location = new System.Drawing.Point(417, 257);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 6;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.SaveHandler);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClose.Location = new System.Drawing.Point(498, 257);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 23);
+            this.btnClose.TabIndex = 7;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.CloseHandler);
+            // 
+            // lblHours
+            // 
+            this.lblHours.AutoSize = true;
+            this.lblHours.Location = new System.Drawing.Point(20, 262);
+            this.lblHours.Name = "lblHours";
+            this.lblHours.Size = new System.Drawing.Size(33, 13);
+            this.lblHours.TabIndex = 8;
+            this.lblHours.Text = "Time:";
             // 
             // TimesWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(570, 284);
+            this.CancelButton = this.btnClose;
+            this.ClientSize = new System.Drawing.Size(607, 292);
+            this.Controls.Add(this.lblHours);
             this.Controls.Add(this.grid);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnFind);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dtEnd);
             this.Controls.Add(this.dtStart);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TimesWindow";
             this.Text = "TimesWindow";
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bs_times)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -179,10 +209,12 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnFind;
         private System.Windows.Forms.DataGridView grid;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.DataGridViewTextBoxColumn colStart;
         private System.Windows.Forms.DataGridViewTextBoxColumn colEnd;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNote;
+        private System.Windows.Forms.BindingSource bs_times;
+        private System.Windows.Forms.Label lblHours;
     }
 }

@@ -114,7 +114,7 @@ namespace TimeTracker
             Close();
         }
 
-        private void NewTimeNoteHandler(object sender, EventArgs e)
+        void NewTimeNoteHandler(object sender, EventArgs e)
         {
             using (var form = new NoteWindow(""))
                 if (form.ShowDialog(this) == DialogResult.OK)
@@ -127,6 +127,12 @@ namespace TimeTracker
                         db.TimedEvents.Add(new TimedEvent { Start = now, UserId = m_user.UserId, Note = form.Note });
                         db.SaveChanges();
                     }
+        }
+
+        void EditTimesHandler(object sender, EventArgs e)
+        {
+            using (var form = new TimesWindow(m_user))
+                form.ShowDialog(this);
         }
     }
 }
