@@ -14,19 +14,32 @@ namespace TimeTracker.Entities
         public string Note { get; set; }
         public User User { get; set; }
         public int UserId { get; set; }
-
-        public TimeSpan Duration()
-        {
-            if (End == null)
-                return TimeSpan.Zero;
-            return End.GetValueOrDefault() - Start;
+        public string Duration {
+            get
+            {
+                var ts = ComputeDuration(true);
+                var sb = new StringBuilder();
+                if (ts.Days > 0)
+                    sb.Append(ts.Days).Append(' ');
+                sb.Append(ts.Hours).Append(':').Append(ts.Minutes.ToString("00"));
+                return sb.ToString();
+            }
         }
 
-        public static TimeSpan Duration(IEnumerable<TimedEvent> events)
+        public TimeSpan ComputeDuration(bool countNoEnd = false)
+        {
+            if (End != null)
+            return End.GetValueOrDefault() - Start;
+            if (countNoEnd)
+                return DateTime.Now - Start;
+            return TimeSpan.Zero;
+        }
+
+        public static TimeSpan ComputeDuration(IEnumerable<TimedEvent> events, bool countNoEnd = false)
         {
             var time = TimeSpan.Zero;
             foreach (var item in events)
-                time += item.Duration();
+                time += item.ComputeDuration(countNoEnd);
             return time;
         }
     }

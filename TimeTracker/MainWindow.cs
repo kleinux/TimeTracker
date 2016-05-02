@@ -134,5 +134,10 @@ namespace TimeTracker
             using (var form = new TimesWindow(m_user))
                 form.ShowDialog(this);
         }
+
+        void NotifyDoubleClickHandler(object sender, MouseEventArgs e)
+        {
+            EditTimesHandler(sender, e);
+        }
     }
 }

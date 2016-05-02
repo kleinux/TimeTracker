@@ -33,7 +33,16 @@ namespace TimeTracker
             FindTimesHandler(null, null);
         }
 
+        void LinkUser()
+        {
+            foreach (var time in Times())
+                time.User = m_user;
+            m_db.SaveChanges();
+        }
+
         IEnumerable<TimedEvent> Times() => (IEnumerable<TimedEvent>)bs_times.DataSource;
+
+        TimedEvent Started() => Times().FirstOrDefault(fn => fn.End == null);
 
         void FindTimesHandler(object sender, EventArgs e)
         {
@@ -69,13 +78,6 @@ namespace TimeTracker
             }
         }
 
-        void LinkUser()
-        {
-            foreach (var time in Times())
-                time.User = m_user;
-            m_db.SaveChanges();
-        }
-
         void GridDoubleClickHandler(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && e.ColumnIndex == colNote.Index)
@@ -106,12 +108,21 @@ namespace TimeTracker
 
         void bs_times_CurrentItemChanged(object sender, EventArgs e)
         {
-            lblHours.Text = $"Time: {TimedEvent.Duration(Times())}";
+            lblHours.Text = $"Time: {TimedEvent.ComputeDuration(Times(), true)}";
+            if (Started() != null)
+                btnStartStop.Text = "Stop Timing";
+            else
+                btnStartStop.Text = "Start Timing";
         }
 
         void NewTimeHandler(object sender, EventArgs e)
         {
-            m_list.Add(m_db.TimedEvents.Add(new TimedEvent { Start = DateTime.Now, User = m_user }));
+            var started = Started();
+            if (started != null)
+                started.End = DateTime.Now;
+            else
+                m_list.Add(m_db.TimedEvents.Add(new TimedEvent { Start = DateTime.Now, User = m_user }));
+            bs_times.ResetBindings(false);
         }
     }
 }

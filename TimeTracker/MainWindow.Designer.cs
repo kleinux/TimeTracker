@@ -35,9 +35,9 @@
             this.mniToggle = new System.Windows.Forms.ToolStripMenuItem();
             this.mniNewTimeNote = new System.Windows.Forms.ToolStripMenuItem();
             this.mniEditNote = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.editTimesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,6 +46,7 @@
             this.notify.ContextMenuStrip = this.menu;
             this.notify.Icon = ((System.Drawing.Icon)(resources.GetObject("notify.Icon")));
             this.notify.Visible = true;
+            this.notify.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.NotifyDoubleClickHandler);
             // 
             // menu
             // 
@@ -57,7 +58,7 @@
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(158, 142);
+            this.menu.Size = new System.Drawing.Size(158, 120);
             this.menu.Opening += new System.ComponentModel.CancelEventHandler(this.MenuOpeningHandler);
             // 
             // mniToggle
@@ -81,24 +82,24 @@
             this.mniEditNote.Text = "Edit Note";
             this.mniEditNote.Click += new System.EventHandler(this.EditNoteHandler);
             // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitHandler);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(154, 6);
-            // 
             // editTimesToolStripMenuItem
             // 
             this.editTimesToolStripMenuItem.Name = "editTimesToolStripMenuItem";
             this.editTimesToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.editTimesToolStripMenuItem.Text = "Edit Times";
             this.editTimesToolStripMenuItem.Click += new System.EventHandler(this.EditTimesHandler);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(154, 6);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitHandler);
             // 
             // MainWindow
             // 
