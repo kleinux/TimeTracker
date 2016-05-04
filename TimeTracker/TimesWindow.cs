@@ -108,7 +108,8 @@ namespace TimeTracker
 
         void bs_times_CurrentItemChanged(object sender, EventArgs e)
         {
-            lblHours.Text = $"Time: {TimedEvent.ComputeDuration(Times(), true)}";
+            var time = TimedEvent.ComputeDuration(Times(), true);
+            lblHours.Text = $"Time: {(int)time.TotalHours}:{time.Minutes:00}";
             if (Started() != null)
                 btnStartStop.Text = "Stop Timing";
             else
