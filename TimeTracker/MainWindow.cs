@@ -132,7 +132,11 @@ namespace TimeTracker
         void EditTimesHandler(object sender, EventArgs e)
         {
             using (var form = new TimesWindow(m_user))
+            {
                 form.ShowDialog(this);
+                using (var db = new DatabaseContext())
+                    UpdateIconState(db);
+            }
         }
 
         void NotifyDoubleClickHandler(object sender, MouseEventArgs e)
