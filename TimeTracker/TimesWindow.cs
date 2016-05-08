@@ -30,6 +30,11 @@ namespace TimeTracker
             var today = DateTime.Today;
             dtEnd.Value = today.AddDays(-(today.DayOfWeek - DayOfWeek.Sunday)).Date.AddDays(6d);
             dtStart.Value = dtEnd.Value.AddDays(-7d);
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
             FindTimesHandler(null, null);
         }
 
@@ -44,7 +49,7 @@ namespace TimeTracker
 
         TimedEvent Started() => Times().FirstOrDefault(fn => fn.End == null);
 
-        void FindTimesHandler(object sender, EventArgs e)
+        async void FindTimesHandler(object sender, EventArgs e)
         {
             if (bs_times.DataSource != null)
             {
@@ -52,7 +57,9 @@ namespace TimeTracker
             }
             var start = dtStart.Value;
             var end = dtEnd.Value.AddDays(1d);
-            m_list = new ObservableCollection<TimedEvent>(m_user.GetTimes(m_db).Where(fn => fn.Start >= start && fn.Start < end));
+            Enabled = false;
+            m_list = new ObservableCollection<TimedEvent>(await m_user.GetTimes(m_db).Where(fn => fn.Start >= start && fn.Start < end).ToArrayAsync());
+            Enabled = true;
             m_list.CollectionChanged += ListChangedHandler;
             bs_times.DataSource = m_list.ToBindingList();
 

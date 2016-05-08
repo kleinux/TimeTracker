@@ -39,16 +39,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnFind = new System.Windows.Forms.Button();
             this.grid = new System.Windows.Forms.DataGridView();
-            this.bs_times = new System.Windows.Forms.BindingSource(this.components);
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.lblHours = new System.Windows.Forms.Label();
-            this.btnStartStop = new System.Windows.Forms.Button();
             this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colStart = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEnd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDuration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colNote = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bs_times = new System.Windows.Forms.BindingSource(this.components);
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.lblHours = new System.Windows.Forms.Label();
+            this.btnStartStop = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bs_times)).BeginInit();
             this.SuspendLayout();
@@ -116,55 +116,9 @@
             this.grid.DataSource = this.bs_times;
             this.grid.Location = new System.Drawing.Point(12, 38);
             this.grid.Name = "grid";
-            this.grid.Size = new System.Drawing.Size(729, 217);
+            this.grid.Size = new System.Drawing.Size(713, 324);
             this.grid.TabIndex = 5;
             this.grid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridDoubleClickHandler);
-            // 
-            // bs_times
-            // 
-            this.bs_times.CurrentItemChanged += new System.EventHandler(this.bs_times_CurrentItemChanged);
-            // 
-            // btnSave
-            // 
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(563, 261);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 6;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.SaveHandler);
-            // 
-            // btnClose
-            // 
-            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(644, 261);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 23);
-            this.btnClose.TabIndex = 7;
-            this.btnClose.Text = "Close";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.CloseHandler);
-            // 
-            // lblHours
-            // 
-            this.lblHours.AutoSize = true;
-            this.lblHours.Location = new System.Drawing.Point(93, 262);
-            this.lblHours.Name = "lblHours";
-            this.lblHours.Size = new System.Drawing.Size(33, 13);
-            this.lblHours.TabIndex = 8;
-            this.lblHours.Text = "Time:";
-            // 
-            // btnStartStop
-            // 
-            this.btnStartStop.Location = new System.Drawing.Point(12, 257);
-            this.btnStartStop.Name = "btnStartStop";
-            this.btnStartStop.Size = new System.Drawing.Size(75, 23);
-            this.btnStartStop.TabIndex = 9;
-            this.btnStartStop.Text = "New Time";
-            this.btnStartStop.UseVisualStyleBackColor = true;
-            this.btnStartStop.Click += new System.EventHandler(this.NewTimeHandler);
             // 
             // colId
             // 
@@ -201,7 +155,7 @@
             this.colDuration.HeaderText = "Duration";
             this.colDuration.Name = "colDuration";
             this.colDuration.ReadOnly = true;
-            this.colDuration.Width = 120;
+            this.colDuration.Width = 80;
             // 
             // colNote
             // 
@@ -211,12 +165,60 @@
             this.colNote.ReadOnly = true;
             this.colNote.Width = 175;
             // 
+            // bs_times
+            // 
+            this.bs_times.CurrentItemChanged += new System.EventHandler(this.bs_times_CurrentItemChanged);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.Location = new System.Drawing.Point(547, 368);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 6;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.SaveHandler);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClose.Location = new System.Drawing.Point(628, 368);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 23);
+            this.btnClose.TabIndex = 7;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.CloseHandler);
+            // 
+            // lblHours
+            // 
+            this.lblHours.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblHours.AutoSize = true;
+            this.lblHours.Location = new System.Drawing.Point(93, 373);
+            this.lblHours.Name = "lblHours";
+            this.lblHours.Size = new System.Drawing.Size(33, 13);
+            this.lblHours.TabIndex = 8;
+            this.lblHours.Text = "Time:";
+            // 
+            // btnStartStop
+            // 
+            this.btnStartStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnStartStop.Location = new System.Drawing.Point(12, 368);
+            this.btnStartStop.Name = "btnStartStop";
+            this.btnStartStop.Size = new System.Drawing.Size(75, 23);
+            this.btnStartStop.TabIndex = 9;
+            this.btnStartStop.Text = "New Time";
+            this.btnStartStop.UseVisualStyleBackColor = true;
+            this.btnStartStop.Click += new System.EventHandler(this.NewTimeHandler);
+            // 
             // TimesWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnClose;
-            this.ClientSize = new System.Drawing.Size(753, 296);
+            this.ClientSize = new System.Drawing.Size(737, 403);
             this.Controls.Add(this.btnStartStop);
             this.Controls.Add(this.lblHours);
             this.Controls.Add(this.grid);
