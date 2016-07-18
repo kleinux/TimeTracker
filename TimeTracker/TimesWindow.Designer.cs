@@ -119,6 +119,7 @@
             this.grid.Size = new System.Drawing.Size(713, 324);
             this.grid.TabIndex = 5;
             this.grid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridDoubleClickHandler);
+            this.grid.SelectionChanged += new System.EventHandler(this.SelectionChangedHandler);
             // 
             // colId
             // 

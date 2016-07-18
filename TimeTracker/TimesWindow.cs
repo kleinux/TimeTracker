@@ -29,7 +29,7 @@ namespace TimeTracker
             grid.AutoGenerateColumns = false;
             var today = DateTime.Today;
             dtEnd.Value = today.AddDays(-(today.DayOfWeek - DayOfWeek.Sunday)).Date.AddDays(6d);
-            dtStart.Value = dtEnd.Value.AddDays(-7d);
+            dtStart.Value = dtEnd.Value.AddDays(-6d);
         }
 
         protected override void OnLoad(EventArgs e)
@@ -115,8 +115,18 @@ namespace TimeTracker
 
         void bs_times_CurrentItemChanged(object sender, EventArgs e)
         {
+            var selection = grid.SelectedCells.Cast<DataGridViewCell>().Select(fn => fn.RowIndex).Distinct().ToArray();
+            var adding = TimeSpan.Zero;
+            foreach (var index in selection)
+            {
+                var ev = (TimedEvent)grid.Rows[index].DataBoundItem;
+                adding += ev.ComputeDuration();
+            }
+            string msg = "";
+            if (selection.Length > 1)
+                msg = $" Selection: {(int)adding.TotalHours}:{adding.Minutes:00}";
             var time = TimedEvent.ComputeDuration(Times(), true);
-            lblHours.Text = $"Time: {(int)time.TotalHours}:{time.Minutes:00}";
+            lblHours.Text = $"Time: {(int)time.TotalHours}:{time.Minutes:00}{msg}";
             if (Started() != null)
                 btnStartStop.Text = "Stop Timing";
             else
@@ -131,6 +141,11 @@ namespace TimeTracker
             else
                 m_list.Add(m_db.TimedEvents.Add(new TimedEvent { Start = DateTime.Now, User = m_user }));
             bs_times.ResetBindings(false);
+        }
+
+        void SelectionChangedHandler(object sender, EventArgs e)
+        {
+
         }
     }
 }
